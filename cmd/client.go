@@ -2,10 +2,10 @@ package cmd
 
 import (
 	"context"
-	"fmt"
 	"io"
 	"log"
 	"os"
+	"time"
 
 	"github.com/chrisgoffinet/streamfiles/api"
 
@@ -47,6 +47,7 @@ var clientCmd = &cobra.Command{
 
 		// allocate a []byte by defined chunk size
 		buf := make([]byte, chunkSize)
+		start := time.Now()
 
 		for writing {
 			n, err := file.Read(buf)
@@ -68,7 +69,9 @@ var clientCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println(status)
+		duration := time.Since(start)
+		log.Println(status)
+		log.Printf("total time for upload: %s\n", duration)
 	},
 }
 
