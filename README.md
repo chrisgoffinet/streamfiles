@@ -1,5 +1,5 @@
 # Streamfiles
-An example client/server grpc application that can stream a files and store it.
+An example client/server grpc application that can stream files and store them.
 
 ## Requirements
 Make sure you have `protoc` binary in your $PATH, as its used to generate from protobuf files.
