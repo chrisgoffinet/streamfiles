@@ -15,7 +15,7 @@ import (
 
 var conn *grpc.ClientConn
 var writing = true
-var chunkSize = 1024 * 64 // 64kb chunk size
+var chunkSize = 1024 * 1024 // 1MB chunk size
 
 var clientCmd = &cobra.Command{
 	Use:   "client [host:port] [filename]",

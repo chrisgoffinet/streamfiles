@@ -45,6 +45,7 @@ func (s *Server) Upload(stream Storage_UploadServer) error {
 			if err != nil {
 				return err
 			}
+			defer f.Sync()
 			defer f.Close()
 		}
 		f.Write(chunk.Content)
@@ -55,7 +56,6 @@ func (s *Server) Upload(stream Storage_UploadServer) error {
 		Message: "upload received with success",
 		Code:    UploadStatusCode_Ok,
 	})
-	f.Sync()
 
 	log.Printf("wrote file: %s (%d bytes)\n", f.Name(), totalBytes)
 	return err
